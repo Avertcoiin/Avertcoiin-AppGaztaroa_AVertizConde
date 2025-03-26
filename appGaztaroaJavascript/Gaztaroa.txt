@@ -1,0 +1,25 @@
+Amaia Vertiz Conde
+
+AppGaztaroa
+
+
+Commit 01: “Primeros pasos en React Native” (Tiempo: 1,5h)
+
+En esta práctica, ha resultado haber más problemas de los que en un inicio estimaba. Me he enterado de que aunque ya tenía NodeJS y NPM instalados, la versión no era la adecuada.
+
+Para su actualización, he descargado el archivo de instalación de internet, pero al ejecutarlo me marcaba un error. No marcaba el por qué del error.
+
+Al final, me he enterado de que node estaba abierto en mi bash y el error se debía a eso.
+
+Una vez cerrado, lo he actualizado.
+
+Después de haber creado y visto la aplicación, he procedido a subirlo al repositorio de GitHub. También con esto, he tenido problemas, ya que me he enterado de que tenía unos archivos extra que no debería tener. 
+
+Se me ha ido la cabeza y aunque estos archivos no los había subido, pensaba que los tenía que subir también. He tenido problemas con la resubida desde el directorio anterior. Al final, he desvinculado el directorio de GitHub y lo he vinculado al directorio nuevo y subido.
+
+Después, al ver que había archivos que no debería haber, he vuelto a crear el proyecto y lo he subido (es el que se ve en el GitHub, ya que lo he subido en un directorio nuevo) a un repositorio nuevo. 
+
+Por último, he cambiado el color de fondo y el texto que se muestra en el App. 
+
+
+npx expo start --clear 
