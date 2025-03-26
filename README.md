@@ -1,0 +1,1 @@
+# Avertcoiin-AppGaztaroa_AVertizConde
