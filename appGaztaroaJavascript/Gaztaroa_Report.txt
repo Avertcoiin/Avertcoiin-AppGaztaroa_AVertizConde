@@ -55,6 +55,6 @@ AppGaztaroa
     No funcionaba por eso. Tal vez más tarde compruebe 100% la solución del emulador, pero no he entendido del todo cómo funciona lo de ejecutar el proyecto lanzado en el propio emulador.
 
     
-** Commit 03: Componentes funcionales en React Native
+** Commit 03: Componentes funcionales en React Native (15mins)
     En este commit (por fin) no ha habido ningún problema relevante.
     El único problema que ha surgido ha sido que la importación del "View" estaba duplicada. Al aparecer el error simplemente he eliminado la duplicidad y lo he relanzado.
