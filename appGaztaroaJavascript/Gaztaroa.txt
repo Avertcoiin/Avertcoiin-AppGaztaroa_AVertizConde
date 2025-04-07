@@ -1,25 +1,57 @@
 Amaia Vertiz Conde
-
 AppGaztaroa
 
+** Commit 01: “Primeros pasos en React Native” (Tiempo: 1,5h)
 
-Commit 01: “Primeros pasos en React Native” (Tiempo: 1,5h)
+    En esta práctica, ha resultado haber más problemas de los que en un inicio estimaba. 
+    Me he enterado de que aunque ya tenía NodeJS y NPM instalados, la versión no era la adecuada.
+    Para su actualización, he descargado el archivo de instalación de internet, pero al ejecutarlo me marcaba un error. No marcaba el por qué del error.
+    Al final, me he enterado de que node estaba abierto en mi bash y el error se debía a eso.
+    Una vez cerrado, lo he actualizado.
 
-En esta práctica, ha resultado haber más problemas de los que en un inicio estimaba. Me he enterado de que aunque ya tenía NodeJS y NPM instalados, la versión no era la adecuada.
+    Después de haber creado y visto la aplicación, he procedido a subirlo al repositorio de GitHub. 
+    También con esto, he tenido problemas, ya que me he enterado de que tenía unos archivos extra que no debería tener. 
+    Se me ha ido la cabeza y aunque estos archivos no los había subido, pensaba que los tenía que subir también. He tenido problemas con la resubida desde el directorio anterior. Al final, 
+    he desvinculado el directorio de GitHub y lo he vinculado al directorio nuevo y subido.
+    Después, al ver que había archivos que no debería haber, he vuelto a crear el proyecto y lo he subido (es el que se ve en el GitHub, ya que lo he subido en un directorio nuevo) a un repositorio nuevo. 
 
-Para su actualización, he descargado el archivo de instalación de internet, pero al ejecutarlo me marcaba un error. No marcaba el por qué del error.
+    Por último, he cambiado el color de fondo y el texto que se muestra en el App. 
 
-Al final, me he enterado de que node estaba abierto en mi bash y el error se debía a eso.
-
-Una vez cerrado, lo he actualizado.
-
-Después de haber creado y visto la aplicación, he procedido a subirlo al repositorio de GitHub. También con esto, he tenido problemas, ya que me he enterado de que tenía unos archivos extra que no debería tener. 
-
-Se me ha ido la cabeza y aunque estos archivos no los había subido, pensaba que los tenía que subir también. He tenido problemas con la resubida desde el directorio anterior. Al final, he desvinculado el directorio de GitHub y lo he vinculado al directorio nuevo y subido.
-
-Después, al ver que había archivos que no debería haber, he vuelto a crear el proyecto y lo he subido (es el que se ve en el GitHub, ya que lo he subido en un directorio nuevo) a un repositorio nuevo. 
-
-Por último, he cambiado el color de fondo y el texto que se muestra en el App. 
+    Nota para mi: ** npx expo start --clear **. Si no te pasa lo que me pasó a mi de que a veces no se actualiza bien. Seguramente sea por algún tipo de caché que hay por ahí.
 
 
-npx expo start --clear 
+**Commit 02: 
+    Una vez copiado el código me ha salido un error 500 que marcaba problemas en el archivo CalendarioComponents.js en la importación de @rneui/themed.
+    SOLUCIÓN BUSCADA: He consultado si tengo @rneui/themed ejecutando "npm list @rneui/themed".
+    El resultado ha sido el siguiente:
+        appgaztaroajavascript@1.0.0 C:\Users\Lenovo\OneDrive\Escritorio\Teleco\Master teleco\Primero\Segundo cuatri\Despliegue de servicios multimedia\React Native\ReactNative_Gaztaroa\Avertcoiin-AppGaztaroa_AVertizConde\appGaztaroaJavascript
+        └── (empty)
+    Por tanto, he instalado @rneui/themed mediante: "npm install @rneui/themed"
+
+    Después de esto, el resultado ha sido el esperado. Aun así, en mi movil el contenido aparecía desde muy arriba, y resultaba bastante incómodo de cara al usuario.
+    Por tanto, he probado a dejar un margen en cada Campobase con respecto al eje y del contenedor. (<View style={{ marginTop: 20 }}> envolviendo "Calendario" en CampobaseComponent.js)
+    La imagen que se mostraba estaba bien pero marcaba un error leve. Aparecía el contenido pero me apareció un warning: 
+        Warning: Text strings must be rendered within a <Text> component.
+        in RCTView (created by View)
+        in View (created by Campobase)
+    He envuelto los ListItems en text y el warning ha desaparecido.
+    De <ListItem.Title>{item.nombre}</ListItem.Title> <ListItem.Subtitle>{item.descripcion}</ListItem.Subtitle>
+    A <ListItem.Title> <Text>{item.nombre}</Text> {/* Envolvemos el texto en <Text> */} </ListItem.Title> <ListItem.Subtitle> <Text>{item.descripcion}</Text> {/* Envolvemos el texto en <Text> */} </ListItem.Subtitle>
+    Iba a comprobar que funcionaba por última vez y expo había caído. Me aparecía un mensaje de  "Something went wrong. Sorry about that. You can go back hto Expo home or try to reload the proyect". No tenía ningún otro mensaje de error. Solo el del móvil. He reactualizado expo y react-native porque se me había desfasado la versión. No he notado ningún cambio. Me imagino que ha caído y solamente hay que esperar un poco.
+    He ido a https://status.expo.dev/ para ver si expo había caído. Me ponía lo siguiente sobre hoy: "Partially Degraded Service". Me imagino que no funciona por eso.
+    He visto que se puede emular el funcionamiento en el ordenador. Voy a probar si funciona. Pongo los pasos por aquí:
+        1. Instalación de Android Studio.
+        2. Nos aseguramos de seleccionar la opción de instalar "Android Virtual Device".
+        3. Configuramos el dispositivo virtual:
+            3.1. Abrimos Android Studio
+            3.2. Vamos a More Actions -> Virtual Device Manager
+            3.3. Seleccionamos un dispositivo móvil para emular + una imagen del sistema y le damos a finish. Yo he elgido el que estaba por defecto.
+        4. Iniciamos el emulador (click al play)
+        5. Ejecutamos nuestro proyecto
+            5.1. npx expo start (--clear)
+            5.2. Nos aseguramos de hacer click en "Run on Android device/emulator".
+
+    Justo cuando estaba a punto de comprobarlo me he enterado de que se me había desconectado el portátil de la red wifi de mi móvil y estaba conectado en la eduroam.
+    No funcionaba por eso. Tal vez más tarde compruebe 100% la solución del emulador, pero no he entendido del todo cómo funciona lo de ejecutar el proyecto lanzado en el propio emulador.
+
+    
