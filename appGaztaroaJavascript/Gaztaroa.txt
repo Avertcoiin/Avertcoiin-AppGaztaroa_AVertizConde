@@ -20,7 +20,7 @@ AppGaztaroa
     Nota para mi: ** npx expo start --clear **. Si no te pasa lo que me pasó a mi de que a veces no se actualiza bien. Seguramente sea por algún tipo de caché que hay por ahí.
 
 
-**Commit 02: 
+** Commit 02: Componentes React Native (Tiempo: 1h)
     Una vez copiado el código me ha salido un error 500 que marcaba problemas en el archivo CalendarioComponents.js en la importación de @rneui/themed.
     SOLUCIÓN BUSCADA: He consultado si tengo @rneui/themed ejecutando "npm list @rneui/themed".
     El resultado ha sido el siguiente:
@@ -55,3 +55,6 @@ AppGaztaroa
     No funcionaba por eso. Tal vez más tarde compruebe 100% la solución del emulador, pero no he entendido del todo cómo funciona lo de ejecutar el proyecto lanzado en el propio emulador.
 
     
+** Commit 03: Componentes funcionales en React Native
+    En este commit (por fin) no ha habido ningún problema relevante.
+    El único problema que ha surgido ha sido que la importación del "View" estaba duplicada. Al aparecer el error simplemente he eliminado la duplicidad y lo he relanzado.
