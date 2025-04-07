@@ -72,3 +72,6 @@ AppGaztaroa
 
     Además, he añadido también una línea de código extra para que "Calendario Gaztaroa" de la página principal esté centrada y no a la izquierda, tal y como se muestra en el documento "(headerTitleAlign: 'center',)".
     
+** Commit 05: Drawer Navigation (Tiempo: 1h)
+    En este commit he añadido el Drawer navigator con las opciones "Campo Base" y "Calendario". Las he enlazado mediante "DrawerNavegador".
+    He pasado un buen rato comprobando si funcionaba porque no me había enterado de que el Drawer aparecía deslizando el dedo en el móvil. 
