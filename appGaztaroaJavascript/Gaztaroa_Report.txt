@@ -55,6 +55,20 @@ AppGaztaroa
     No funcionaba por eso. Tal vez más tarde compruebe 100% la solución del emulador, pero no he entendido del todo cómo funciona lo de ejecutar el proyecto lanzado en el propio emulador.
 
     
-** Commit 03: Componentes funcionales en React Native (15mins)
+** Commit 03: Componentes funcionales en React Native (Tiempo: 15mins)
     En este commit (por fin) no ha habido ningún problema relevante.
     El único problema que ha surgido ha sido que la importación del "View" estaba duplicada. Al aparecer el error simplemente he eliminado la duplicidad y lo he relanzado.
+
+** Commit 04: Stack Navigation (Tiempo: 15mins)
+    En este commit no ha habido grandes problemas.
+    Aun así, usaré el documento para añadir notas de cara a futuro:
+        - ¿Qué es un Navigator? Un contenedor que define cómo se gestionan las transiciones entre diferentes pantallas (screens).
+            Tipos: Stack Navigator(Las pantallas se apilan una sobre otra, y puedes navegar hacia adelante o retroceder), Tab Navigator(Las pantallas se organizan en pestañas que el usuario puede seleccionar), Drawer Navigator(Las pantallas se seleccionan desde un menú deslizable), Bottom Tab Navigator(Similar al Tab Navigator, pero las pestañas están en la parte inferior de la pantalla).
+        - ¿Qué es un Screen? Una pantalla individual en la aplicación.
+
+        Un navigator es como un contenedor que organiza y gestiona múltiples screens.
+        Cada screen es una vista individual que el usuario puede ver.
+        Los screens se definen dentro de un navigator usando componentes como Stack.Screen, Tab.Screen, etc.
+
+    Además, he añadido también una línea de código extra para que "Calendario Gaztaroa" de la página principal esté centrada y no a la izquierda, tal y como se muestra en el documento "(headerTitleAlign: 'center',)".
+    
