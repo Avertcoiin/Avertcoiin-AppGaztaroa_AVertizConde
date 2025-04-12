@@ -1,7 +1,7 @@
 Amaia Vertiz Conde
 AppGaztaroa
 
-** Commit 01: “Primeros pasos en React Native” (Tiempo: 1,5h)
+** Commit 01: Primeros pasos en React Native (Tiempo: 1,5h)
 
     En esta práctica, ha resultado haber más problemas de los que en un inicio estimaba. 
     Me he enterado de que aunque ya tenía NodeJS y NPM instalados, la versión no era la adecuada.
@@ -75,3 +75,20 @@ AppGaztaroa
 ** Commit 05: Drawer Navigation (Tiempo: 1h)
     En este commit he añadido el Drawer navigator con las opciones "Campo Base" y "Calendario". Las he enlazado mediante "DrawerNavegador".
     He pasado un buen rato comprobando si funcionaba porque no me había enterado de que el Drawer aparecía deslizando el dedo en el móvil. 
+
+** Commit 06: Ejercicio Componentes y Navegacion (Tiempo: 3horas)
+    Cuando estaba haciendo la práctica, Pablo me contó que había resuelto un problema relacionado con el no cargado de la app. 
+    Si en vez de lanzarla mediante ** npx expo start --clear ** añadimos la opción ** --tunnel ** nos evitamos el problema. Esta opción no elimina el caché.
+    
+    En este commit, primero hemos creado el componente ContactoComponent. Simplemente hemos añadido la información correspondiente a lo que se debe mostrar, envuelto en un Card y ScrollView. 
+    Después, en CampobaseComponent.js hemos añadido el StackNavigator de Contacto y se lo he añadido al Darwer Navigator.
+
+    Después, al crear QuienesSomosComponent, he creado dons Cards distintos, un Card con la historia del club y otro con la lista de actividades y recursos.
+    Durante la implementación, me he encontrado con el error:
+    (NOBRIDGE) ERROR  VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead. [Component Stack] 
+    Para solucionarlo, moví el ScrollView al nivel superior del componente, asegurándome de que el FlatList estuviera correctamente encapsulado dentro de su propia Card. Esto resolvió el problema y permitió que toda la pantalla fuera desplazable.
+
+    Además, en Home y DetalleExcursión hemos cambiado los títulos a color chocolate, con letra gande y dentro de la imagen envolviendo el texto en la imagen mediante un Card.FeaturedTitle.
+
+    Por último, me he enterado de que no había configurado bien el estilo de navegación en la pantalla de Detalle Excursión. He ajustado la navegación para que, tal y como se muestra en el video, al estar en Detalle Excursión aparezca "Calendario Gaztaroa" subrayado junto a la flecha de ir hacia atrás.
+    
