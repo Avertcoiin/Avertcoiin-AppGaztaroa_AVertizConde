@@ -92,3 +92,20 @@ AppGaztaroa
 
     Por último, me he enterado de que no había configurado bien el estilo de navegación en la pantalla de Detalle Excursión. He ajustado la navegación para que, tal y como se muestra en el video, al estar en Detalle Excursión aparezca "Calendario Gaztaroa" subrayado junto a la flecha de ir hacia atrás.
     
+** Commit 07: Botones e icons (2h por ahora)
+    En la sección 1 he empezado añadiendo el código del guión, añadiendo a continuación el código correspondiente a 
+    [... renderizar aquí el contenido de los comentarios ...] y [... actualizar estado para tener acceso a los comentarios ...].
+    Para ello, he añadido un view con el contenido de los comentarios en el return de RenderComentario y añadido la línea comentarios: COMENTARIOS en el this.state.
+    Después, viendo que el formato en el que había presentado los comentarios de los usuarios no era como el de la página 10 del informe, lo adapté para que mantuviera el mismo estilo.
+    Simplemente en vez de mostrar primero el autor y después el usuario pasé a mostrar primero el autor, después el rating y, por último, en la misma línea el usuario y la fecha. Conseguí concatenarlos en la misma línea mediente una coma (-- {comentario.autor}, {comentario.dia})
+
+    Después, he añadido el código correspondiente al icon del corazón. Así, he estudiado también el uso de .some, aprendiendo que verifica si al menos un elemento de un array cumple con la condición especificada. En este caso, se usa para verificar si una excursión está marcada como favorita.
+    Asimismo, también he modificadel código para que la fecha y hora del comentario se muestren adecuadamente. Para eso, como los espacios de los dos puntos me daban problemas, he usado la función replace.
+    Así, mediante Intl.DateTimeFormat he formateado la fecha y hora al formato mostrado especificado.
+
+    En el apartado sobre los iconos en a la izquierda de cada una de las opciones del menú, una vez copiado el código, me ha aparecido un error sobre el campo Home. Me he enterado, que antes en vez de Home tenía puesto Campo Base comoinitialRouteName, por lo que he cambiado "Home" por "Campo base" para eliminar el error.
+    Después, para el resto de los iconos, he reutilizado el código para añadir el icono cambiando el campo name por el indicado en el tutorial.
+
+
+
+
