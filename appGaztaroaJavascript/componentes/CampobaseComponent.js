@@ -16,16 +16,6 @@ import QuienesSomos from './QuienesSomosComponent';
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
-const menuHamburguesa = (navigation) => (
-  <Icon
-    name="menu"
-    size={28}
-    color="white"
-    onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-  />
-);
-
-
 function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
@@ -63,9 +53,10 @@ function CalendarioNavegador() {
         name="Calendar"
         component={Calendario}
         options={{
-          title: 'Calendario Gaztaroa', // Título de la pantalla principal
+          title: 'Calendario Gaztaroa',
         }}
       />
+
       <Stack.Screen
         name="DetalleExcursion"
         component={DetalleExcursion}
@@ -108,11 +99,7 @@ function HomeNavegador() {
     <Stack.Navigator
       initialRouteName="Home"
       screenOptions={{
-        headMode: 'screen',
-        headerTintColor: '#fff',
-        headerStyle: { backgroundColor: '#015afc' },
-        headerTitleStyle: { color: '#fff' },
-        headerTitleAlign: 'center',
+        headerShown: false,
       }}
     >
       <Stack.Screen
@@ -126,18 +113,13 @@ function HomeNavegador() {
   );
 }
 
-// Cambia esta parte del código de tu navegador QuienesSomosNavegador:
 // StackNavigator para la pantalla "Quienes Somos"
-function QuienesSomosNavegador({ navigation }) {
+function QuienesSomosNavegador() {
   return (
     <Stack.Navigator
       initialRouteName="QuienesSomos"
       screenOptions={{
-        headerTintColor: '#fff',
-        headerStyle: { backgroundColor: '#015afc' },
-        headerTitleStyle: { color: '#fff' },
-        headerTitleAlign: 'center',
-        headerLeft: () => menuHamburguesa(navigation),  // Menú hamburguesa
+        headerShown: false, // Desactivamos el header aquí
       }}
     >
       <Stack.Screen
@@ -151,18 +133,13 @@ function QuienesSomosNavegador({ navigation }) {
   );
 }
 
-
-
 // StackNavigator para la pantalla "Contacto"
 function ContactoNavegador() {
   return (
     <Stack.Navigator
       initialRouteName="Contacto"
       screenOptions={{
-        headerTintColor: '#fff', // Color del texto del encabezado
-        headerStyle: { backgroundColor: '#015afc' }, // Color de fondo del encabezado
-        headerTitleStyle: { color: '#fff' }, // Color del título
-        headerTitleAlign: 'center', // Alinear el título al centro
+        headerShown: false,
       }}
     >
       <Stack.Screen
@@ -183,39 +160,69 @@ function DrawerNavegador() {
       initialRouteName="Campo base"
       drawerContent={props => <CustomDrawerContent {...props} />}
       screenOptions={{
-        headerShown: false,
+        headerShown: false, // Desactivar encabezado globalmente para evitar duplicados
         drawerStyle: {
           backgroundColor: '#c2d3da',
         },
+        gestureEnabled: true,
       }}
     >
       <Drawer.Screen
         name="Campo base"
         component={HomeNavegador}
-        options={{
+        options={({ navigation }) => ({
+          headerShown: true,
+          headerTintColor: '#fff', // Color del texto del encabezado
+          headerStyle: { backgroundColor: '#015afc' }, // Color de fondo del encabezado
+          headerTitleStyle: { color: '#fff' }, // Color del título
+          headerTitleAlign: 'center', // Alinear el título al centro
+          headerLeft: () => (
+            <Icon
+              name="menu"
+              size={28}
+              color="white"
+              onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+              style={{ marginLeft: 10 }}
+            />
+          ),
           drawerIcon: ({ tintColor }) => (
             <Icon
-              name='home'
-              type='font-awesome'
+              name="home"
+              type="font-awesome"
               size={24}
               color={tintColor}
             />
           ),
-        }}
+        })}
       />
+
       <Drawer.Screen
         name="Quiénes somos"
         component={QuienesSomosNavegador}
-        options={{
+        options={({ navigation }) => ({
+          headerShown: true,
+          headerTintColor: '#fff',
+          headerStyle: { backgroundColor: '#015afc' },
+          headerTitleStyle: { color: '#fff' },
+          headerTitleAlign: 'center',
+          headerLeft: () => (
+            <Icon
+              name="menu"
+              size={28}
+              color="white"
+              onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+              style={{ marginLeft: 10 }}
+            />
+          ),
           drawerIcon: ({ tintColor }) => (
             <Icon
-              name='info-circle'
-              type='font-awesome'
+              name="info-circle"
+              type="font-awesome"
               size={24}
               color={tintColor}
             />
           ),
-        }}
+        })}
       />
 
       <Drawer.Screen
@@ -232,21 +239,37 @@ function DrawerNavegador() {
           ),
         }}
       />
+
       <Drawer.Screen
         name="Contacto"
         component={ContactoNavegador}
-        options={{
+        options={({ navigation }) => ({
+          headerShown: true,
+          headerTintColor: '#fff',
+          headerStyle: { backgroundColor: '#015afc' },
+          headerTitleStyle: { color: '#fff' },
+          headerTitleAlign: 'center',
+          headerLeft: () => (
+            <Icon
+              name="menu"
+              size={28}
+              color="white"
+              onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+              style={{ marginLeft: 10 }}
+            />
+          ),
           drawerIcon: ({ tintColor }) => (
             <Icon
-              name='address-card'
-              type='font-awesome'
+              name="address-card"
+              type="font-awesome"
               size={24}
               color={tintColor}
             />
           ),
-        }}
+        })}
       />
     </Drawer.Navigator>
+
   );
 }
 
