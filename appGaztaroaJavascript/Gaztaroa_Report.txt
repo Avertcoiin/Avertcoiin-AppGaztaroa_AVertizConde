@@ -92,7 +92,7 @@ AppGaztaroa
 
     Por último, me he enterado de que no había configurado bien el estilo de navegación en la pantalla de Detalle Excursión. He ajustado la navegación para que, tal y como se muestra en el video, al estar en Detalle Excursión aparezca "Calendario Gaztaroa" subrayado junto a la flecha de ir hacia atrás.
     
-** Commit 07: Botones e icons (2h por ahora)
+** Commit 07: Botones e icons (3.5h)
     En la sección 1 he empezado añadiendo el código del guión, añadiendo a continuación el código correspondiente a 
     [... renderizar aquí el contenido de los comentarios ...] y [... actualizar estado para tener acceso a los comentarios ...].
     Para ello, he añadido un view con el contenido de los comentarios en el return de RenderComentario y añadido la línea comentarios: COMENTARIOS en el this.state.
@@ -103,9 +103,10 @@ AppGaztaroa
     Asimismo, también he modificadel código para que la fecha y hora del comentario se muestren adecuadamente. Para eso, como los espacios de los dos puntos me daban problemas, he usado la función replace.
     Así, mediante Intl.DateTimeFormat he formateado la fecha y hora al formato mostrado especificado.
 
-    En el apartado sobre los iconos en a la izquierda de cada una de las opciones del menú, una vez copiado el código, me ha aparecido un error sobre el campo Home. Me he enterado, que antes en vez de Home tenía puesto Campo Base comoinitialRouteName, por lo que he cambiado "Home" por "Campo base" para eliminar el error.
+    En el apartado sobre los iconos en a la izquierda de cada una de las opciones del menú, una vez copiado el código, me ha aparecido un error sobre el campo Home. Me he enterado, que antes en vez de Home tenía puesto Campo Base como initial RouteName, por lo que he cambiado "Home" por "Campo base" para eliminar el error.
     Después, para el resto de los iconos, he reutilizado el código para añadir el icono cambiando el campo name por el indicado en el tutorial.
 
-
-
-
+    Por último, el mayor "drama" del ejercicio ha venido de la mano del botón tipo hamburger para desplegar el Drawer Menu. La cosa es que replicando lo que indicaba el ejercicio no funcionaba. El icono como tal salía pero no funcionaba.
+    Tras hacer muchos intentos, encontré en internet una persona que en vez de poner el icono y su funcionalidad en la propia función del navigator pasaba el header y su configuración al Drawer.Screen. 
+    El problema de este planteamiento es que para el caso de "Calendario" la ventana de "Detalle Excursión" no mantenía el formato. Por eso, he puesto el icono del hamburger en el propio Navigator y he dejado ese header igual. 
+    Por tanto, las tres lineas para abrir el Drawer Menu funcionan en todos los casos excepto el de Calendario, que es sobre todo visual.
