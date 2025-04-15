@@ -92,7 +92,7 @@ AppGaztaroa
 
     Por último, me he enterado de que no había configurado bien el estilo de navegación en la pantalla de Detalle Excursión. He ajustado la navegación para que, tal y como se muestra en el video, al estar en Detalle Excursión aparezca "Calendario Gaztaroa" subrayado junto a la flecha de ir hacia atrás.
     
-** Commit 07: Botones e icons (3.5h)
+** Commit 07: Botones e icons (4.5h)
     En la sección 1 he empezado añadiendo el código del guión, añadiendo a continuación el código correspondiente a 
     [... renderizar aquí el contenido de los comentarios ...] y [... actualizar estado para tener acceso a los comentarios ...].
     Para ello, he añadido un view con el contenido de los comentarios en el return de RenderComentario y añadido la línea comentarios: COMENTARIOS en el this.state.
@@ -110,3 +110,16 @@ AppGaztaroa
     Tras hacer muchos intentos, encontré en internet una persona que en vez de poner el icono y su funcionalidad en la propia función del navigator pasaba el header y su configuración al Drawer.Screen. 
     El problema de este planteamiento es que para el caso de "Calendario" la ventana de "Detalle Excursión" no mantenía el formato. Por eso, he puesto el icono del hamburger en el propio Navigator y he dejado ese header igual. 
     Por tanto, las tres lineas para abrir el Drawer Menu funcionan en todos los casos excepto el de Calendario, que es sobre todo visual.
+
+** Commit 08: Servidor JSON (2h)
+    En este apartado, hemos comenzado siguiendo los pasos del guión: hemos instalado json-server, hemos creado la carpeta public con el directorio imagenes en sus interior (y las imágenes).
+    Al probar a correr el servidor a la primera, me marcó un error. Que resultó ser que para poder lanzarlo el orden correcto era lanzar primero el servidor json y después la app.
+
+    Después, creé el archivo comun.js e introduje la IP y los colores en él. Importé la url y los colores en los archivos donde los iba a necesitar y cambié los directorios y colores escritos a mano en su debía
+    por los del archivo comun.js.
+
+    A raíz de eso, tuve un problema con la importación de las imágenes, que resultó ser que había puesto la carpeta public en el directorio appGaztaroaJavascript, y no en json-server.
+    Aun así, cabe destar el dato de que cambiar un poco los archivos detalleExcursión y Home para poder tomar datos de la base de datos tipo json y poder eliminar la importación de EXCURSIONES, COMENTARIOS etc. aunque la práctica no lo exigía.
+    Como dato extra, me he fijado de que la imagen de 40 años que aparece en mi home y el del ejemplo es distinto. Para que fuera el mismo, he modificado el directorio 40Años del db.json para ese campo en concreto (en cabeceras)
+
+    NOTA: me he fijado de que cuando hay que tomar los datos de la base de datos va un poco lento. No sé si es por la velocidad de la base de datos o de mi propio movil u ordenador (o ambos).

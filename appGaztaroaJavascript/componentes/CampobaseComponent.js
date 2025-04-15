@@ -11,6 +11,7 @@ import { Icon } from '@rneui/themed';
 import Home from './HomeComponent';
 import Contacto from './ContactoComponent';
 import QuienesSomos from './QuienesSomosComponent';
+import { colorGaztaroaClaro, colorGaztaroaOscuro } from '../comun/comun';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -43,7 +44,7 @@ function CalendarioNavegador() {
       initialRouteName="Calendar"
       screenOptions={{
         headerTintColor: '#fff',
-        headerStyle: { backgroundColor: '#015afc' },
+        headerStyle: { backgroundColor: colorGaztaroaOscuro },
         headerTitleStyle: { color: '#fff' },
         headerTitleAlign: 'center',
       }}
@@ -51,10 +52,17 @@ function CalendarioNavegador() {
       <Stack.Screen
         name="Calendar"
         component={Calendario}
-        options={{
+        options={({ navigation }) => ({
           title: 'Calendario Gaztaroa',
-          headerLeft: () => (<Icon name="menu" size={28} color= 'white' onPress={ () => navigation.dispatch(DrawerActions.toggleDrawer()) }/>),
-        }}
+          headerLeft: () => (
+            <Icon
+              name="menu"
+              size={28}
+              color="white"
+              onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+            />
+          ),
+        })}
       />
 
       <Stack.Screen
@@ -84,11 +92,10 @@ function CalendarioNavegador() {
               </Text>
             </View>
           ),
-          headerStyle: { backgroundColor: '#015afc' },
+          headerStyle: { backgroundColor: colorGaztaroaOscuro },
           headerTitleAlign: 'center',
         })}
       />
-
     </Stack.Navigator>
   );
 }
@@ -159,7 +166,7 @@ function DrawerNavegador({ navigation }) {
       screenOptions={{
         headerShown: false, // Desactivar encabezado globalmente para evitar duplicados
         drawerStyle: {
-          backgroundColor: '#c2d3da',
+          backgroundColor: colorGaztaroaClaro,
         },
         gestureEnabled: true,
       }}
@@ -170,7 +177,7 @@ function DrawerNavegador({ navigation }) {
         options={({ navigation }) => ({
           headerShown: true,
           headerTintColor: '#fff', // Color del texto del encabezado
-          headerStyle: { backgroundColor: '#015afc' }, // Color de fondo del encabezado
+          headerStyle: { backgroundColor: colorGaztaroaOscuro }, // Color de fondo del encabezado
           headerTitleStyle: { color: '#fff' }, // Color del título
           headerTitleAlign: 'center', // Alinear el título al centro
           headerLeft: () => (
@@ -199,7 +206,7 @@ function DrawerNavegador({ navigation }) {
         options={{
           headerShown: true,
           headerTintColor: '#fff',
-          headerStyle: { backgroundColor: '#015afc' },
+          headerStyle: { backgroundColor: colorGaztaroaOscuro },
           headerTitleStyle: { color: '#fff' },
           headerTitleAlign: 'center',
           drawerIcon: ({ tintColor }) => (
@@ -234,7 +241,7 @@ function DrawerNavegador({ navigation }) {
         options={({ navigation }) => ({
           headerShown: true,
           headerTintColor: '#fff', // Color del texto del encabezado
-          headerStyle: { backgroundColor: '#015afc' }, // Color de fondo del encabezado
+          headerStyle: { backgroundColor: colorGaztaroaOscuro }, // Color de fondo del encabezado
           headerTitleStyle: { color: '#fff' }, // Color del título
           headerTitleAlign: 'center', // Alinear el título al centro
           headerLeft: () => (
@@ -279,7 +286,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   drawerHeader: {
-    backgroundColor: '#015afc',
+    backgroundColor: colorGaztaroaOscuro,
     height: 100,
     alignItems: 'center',
     justifyContent: 'center',

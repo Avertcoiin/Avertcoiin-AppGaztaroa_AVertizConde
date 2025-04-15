@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, ScrollView } from 'react-native';
 import { Card, ListItem, Avatar } from '@rneui/themed';
 import { ACTIVIDADES } from '../comun/actividades';
+import { baseUrl } from '../comun/comun';
 
 // Componente funcional para la Card superior
 function Historia() {
@@ -25,7 +26,7 @@ class QuienesSomos extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      actividades: ACTIVIDADES,
+      actividades: ACTIVIDADES, // Asegúrate de que ACTIVIDADES esté correctamente importado
     };
   }
 
@@ -33,7 +34,7 @@ class QuienesSomos extends Component {
     const renderActividadItem = ({ item }) => {
       return (
         <ListItem bottomDivider>
-          <Avatar source={require('./imagenes/40Años.png')} />
+          <Avatar source={{ uri: baseUrl + item.imagen }} /> {/* Cambiado excursiones.imagen a item.imagen */}
           <ListItem.Content>
             <ListItem.Title>{item.nombre}</ListItem.Title>
             <ListItem.Subtitle>{item.descripcion}</ListItem.Subtitle>
@@ -53,7 +54,7 @@ class QuienesSomos extends Component {
           <Card.Divider />
           {this.state.actividades.map((item) => (
             <ListItem key={item.id} bottomDivider>
-              <Avatar source={require('./imagenes/40Años.png')} />
+              <Avatar source={{ uri: baseUrl + item.imagen }} />
               <ListItem.Content>
                 <ListItem.Title>{item.nombre}</ListItem.Title>
                 <ListItem.Subtitle>{item.descripcion}</ListItem.Subtitle>
