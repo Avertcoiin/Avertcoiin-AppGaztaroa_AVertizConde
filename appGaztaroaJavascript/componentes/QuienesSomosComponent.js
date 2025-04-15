@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Text, ScrollView } from 'react-native';
 import { Card, ListItem, Avatar } from '@rneui/themed';
-import { ACTIVIDADES } from '../comun/actividades';
 import { baseUrl } from '../comun/comun';
+import { connect } from 'react-redux';
 
 // Componente funcional para la Card superior
 function Historia() {
@@ -23,26 +23,7 @@ function Historia() {
 
 // Componente de clase para la Card inferior
 class QuienesSomos extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      actividades: ACTIVIDADES, // Asegúrate de que ACTIVIDADES esté correctamente importado
-    };
-  }
-
   render() {
-    const renderActividadItem = ({ item }) => {
-      return (
-        <ListItem bottomDivider>
-          <Avatar source={{ uri: baseUrl + item.imagen }} /> {/* Cambiado excursiones.imagen a item.imagen */}
-          <ListItem.Content>
-            <ListItem.Title>{item.nombre}</ListItem.Title>
-            <ListItem.Subtitle>{item.descripcion}</ListItem.Subtitle>
-          </ListItem.Content>
-        </ListItem>
-      );
-    };
-
     return (
       <ScrollView style={{ flex: 1, padding: 10 }}>
         {/* Card para "Quiénes somos" */}
@@ -50,9 +31,9 @@ class QuienesSomos extends Component {
 
         {/* Card para "Actividades y recursos" */}
         <Card>
-          <Card.Title>"Actividades y recursos"</Card.Title>
+          <Card.Title>Actividades y recursos</Card.Title>
           <Card.Divider />
-          {this.state.actividades.map((item) => (
+          {this.props.actividades.actividades.map((item) => (
             <ListItem key={item.id} bottomDivider>
               <Avatar source={{ uri: baseUrl + item.imagen }} />
               <ListItem.Content>
@@ -67,4 +48,12 @@ class QuienesSomos extends Component {
   }
 }
 
-export default QuienesSomos;
+// Mapea el estado de Redux a las props del componente
+const mapStateToProps = (state) => {
+  return {
+    actividades: state.actividades,
+  };
+};
+
+// Conecta el componente con Redux
+export default connect(mapStateToProps)(QuienesSomos);

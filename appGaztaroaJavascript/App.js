@@ -4,20 +4,28 @@ import { StyleSheet, View } from 'react-native';
 import Campobase from './componentes/CampobaseComponent';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+// Importa Redux
+import { Provider } from 'react-redux';
+import { ConfigureStore } from './redux/configureStore';
+
+// Configura el almacén de Redux
+const store = ConfigureStore();
+
 export default function App() {
-  return(
-  <SafeAreaProvider>
-    <View style={styles.container}>
-      <Campobase/>
-      <StatusBar style="auto" />
-    </View>
-  </SafeAreaProvider>
+  return (
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <View style={styles.container}>
+          <Campobase />
+          <StatusBar style="auto" />
+        </View>
+      </SafeAreaProvider>
+    </Provider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
   },
 });

@@ -123,3 +123,10 @@ AppGaztaroa
     Como dato extra, me he fijado de que la imagen de 40 años que aparece en mi home y el del ejemplo es distinto. Para que fuera el mismo, he modificado el directorio 40Años del db.json para ese campo en concreto (en cabeceras)
 
     NOTA: me he fijado de que cuando hay que tomar los datos de la base de datos va un poco lento. No sé si es por la velocidad de la base de datos o de mi propio movil u ordenador (o ambos).
+
+** Commit 09: Redux y Thunk (1h)
+    Aunque parezca increible, esta práctica no ha tenido muchas complicaciones.
+    He seguido lo indicado en el guión y solo he tenido un pequeño problema en CalendarioComponent.js, ya que había hecho mal la conexión a redux para
+    tomar los datos sobre las excursiones. 
+
+    He comprobado que todo funciona como debería y ahora me pondré a entender en más profundidad cómo funciona reduz y a hacer el diagrama.
