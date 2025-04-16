@@ -129,4 +129,4 @@ AppGaztaroa
     He seguido lo indicado en el guión y solo he tenido un pequeño problema en CalendarioComponent.js, ya que había hecho mal la conexión a redux para
     tomar los datos sobre las excursiones. 
 
-    He comprobado que todo funciona como debería y ahora me pondré a entender en más profundidad cómo funciona reduz y a hacer el diagrama.
+    He comprobado que todo funciona como debería. He subido también el diagrama que he presentado en clase. Está en el mismo directorio que este texto.
