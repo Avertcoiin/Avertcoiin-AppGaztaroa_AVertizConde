@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { ListItem, Avatar } from '@rneui/themed';
-import { SafeAreaView, FlatList } from 'react-native';
+import { SafeAreaView, FlatList, View, Text } from 'react-native';
 import { baseUrl } from '../comun/comun';
 import { connect } from 'react-redux';
+import { IndicadorActividad } from './IndicadorActividadComponent';
 
 class Calendario extends Component {
     render() {
@@ -24,10 +25,29 @@ class Calendario extends Component {
             );
         };
 
+        // Verificamos si los datos están cargándose
+        if (this.props.excursiones.isLoading) {
+            return (
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <IndicadorActividad />
+                </View>
+            );
+        }
+
+        // Verificamos si hay un error al cargar los datos
+        if (this.props.excursiones.errMess) {
+            return (
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text>{this.props.excursiones.errMess}</Text>
+                </View>
+            );
+        }
+
+        // Renderizamos el FlatList solo si los datos están cargados
         return (
-            <SafeAreaView>
+            <SafeAreaView style={{ flex: 1 }}>
                 <FlatList
-                    data={this.props.excursiones.excursiones || []} // Verifica que sea un arreglo
+                    data={this.props.excursiones.excursiones || []}
                     renderItem={renderCalendarioItem}
                     keyExtractor={(item) => item.id.toString()}
                 />

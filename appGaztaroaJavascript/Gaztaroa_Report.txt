@@ -123,6 +123,7 @@ AppGaztaroa
     Como dato extra, me he fijado de que la imagen de 40 años que aparece en mi home y el del ejemplo es distinto. Para que fuera el mismo, he modificado el directorio 40Años del db.json para ese campo en concreto (en cabeceras)
 
     NOTA: me he fijado de que cuando hay que tomar los datos de la base de datos va un poco lento. No sé si es por la velocidad de la base de datos o de mi propio movil u ordenador (o ambos).
+    Nota para mi: json-server --host 192.168.132.40 db.json -p 3001 -d 2000
 
 ** Commit 09: Redux y Thunk (1h)
     Aunque parezca increible, esta práctica no ha tenido muchas complicaciones.
@@ -130,3 +131,14 @@ AppGaztaroa
     tomar los datos sobre las excursiones. 
 
     He comprobado que todo funciona como debería. He subido también el diagrama que he presentado en clase. Está en el mismo directorio que este texto.
+
+** Commit 10: Activity Indicator y addFavoritos (Por ahora 1h 30mins)
+    En esta sección, hemos creado el archivo IndicadorActividadComponent.js, el cual define un componente IndicadorActividad que ayuda en la representación de un circulito azul.
+    Este se usa (y representa) cuando la página está cargando (acciones loading).
+    
+    Para poder usarlo, lo hemos importado como "import { IndicadorActividad } from './IndicadorActividadComponent';" ya que IndicadorActividad se exporta como exportación nombrada (se exporta como "export const IndicadorActividad = () => { ... }")
+
+    Por otra parte, hemos seguido los pasos del guión para implementar los estados loading, error y el correspondiente a mostrar la información. Para ello, hemos añadido uns serie de condiciones (if (props.isLoading), else if (props.errMess), else) y los hemos gestionado como corresponde a cada caso.
+    En el caso del loading hemos mostrado <IndicadorActividad />, en el caso de error, <Text>{props.errMess}</Text> y, de lo contrario, el código que estaba implementado anteriormente.
+
+    Por otra parte, hemos gestionado la consulta de estados en los RenderItem.
