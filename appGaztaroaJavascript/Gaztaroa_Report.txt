@@ -131,7 +131,7 @@ AppGaztaroa
     por los del archivo comun.js.
 
     A raíz de eso, tuve un problema con la importación de las imágenes, que resultó ser que había puesto la carpeta public en el directorio appGaztaroaJavascript, y no en json-server.
-    Aun así, cabe destar el dato de que cambiar un poco los archivos detalleExcursión y Home para poder tomar datos de la base de datos tipo json y poder eliminar la importación de EXCURSIONES, COMENTARIOS etc. aunque la práctica no lo exigía.
+    Aun así, cabe destacar el dato de que cambiar un poco los archivos detalleExcursión y Home para poder tomar datos de la base de datos tipo json y poder eliminar la importación de EXCURSIONES, COMENTARIOS etc. aunque la práctica no lo exigía.
     Como dato extra, me he fijado de que la imagen de 40 años que aparece en mi home y el del ejemplo es distinto. Para que fuera el mismo, he modificado el directorio 40Años del db.json para ese campo en concreto (en cabeceras)
 
     NOTA: me he fijado de que cuando hay que tomar los datos de la base de datos va un poco lento. No sé si es por la velocidad de la base de datos o de mi propio movil u ordenador (o ambos).
@@ -154,15 +154,15 @@ AppGaztaroa
     
     Para poder usarlo, lo hemos importado como "import { IndicadorActividad } from './IndicadorActividadComponent';" ya que IndicadorActividad se exporta como exportación nombrada (se exporta como "export const IndicadorActividad = () => { ... }")
 
-    Por otra parte, hemos seguido los pasos del guión para implementar los estados loading, error y el correspondiente a mostrar la información. Para ello, hemos añadido uns serie de condiciones (if (props.isLoading), else if (props.errMess), else) y los hemos gestionado como corresponde a cada caso.
+    Por otra parte, hemos seguido los pasos del guión para implementar los estados loading, error y el correspondiente a mostrar la información. Para ello, hemos añadido una serie de condiciones (if (props.isLoading), else if (props.errMess), else) y los hemos gestionado como corresponde en cada caso.
     En el caso del loading hemos mostrado <IndicadorActividad />, en el caso de error, <Text>{props.errMess}</Text> y, de lo contrario, el código que estaba implementado anteriormente.
 
     Por otra parte, hemos gestionado la consulta de estados en los RenderItem.
 
     En cuanto a la segunda sección, he realizado los cambios indicados en el guión.
-    Me he fijado que no estaba tomando los datos de DetalleExcursionComponent (las escursiones) desde redux. Teniendo en cuenta que no tendría sentido que las excursiones se importaran de local, 
+    Me he fijado que no estaba tomando los datos de DetalleExcursionComponent (las excursiones) desde redux. Teniendo en cuenta que no tendría sentido que las excursiones se importaran de local, 
     he modificado el código para que importe los datos desde redux (excursiones: state.excursiones en el mapStateToProps y excursion={this.props.excursiones.excursiones[+excursionId]} en el RenderExcursion).
 
-    Para que el estado de favoritos se gusrde, primero de todo, he importado connect y baseUrl.
+    Para que el estado de favoritos se guarde, primero de todo, he importado connect y baseUrl.
     Luego he hecho los cambios indicados en el guión. En concreto, añadir la función mapDispatchToProps para conectar las acciones de redux con las props del componente y he cambiado las referencias al estado local (this.setState y this.state.favoritos) 
     por el uso de estados globales gestionados por redux (this.props.postFavorito y this.props.favoritos.favoritos).
