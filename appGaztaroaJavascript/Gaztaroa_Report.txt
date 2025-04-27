@@ -20,6 +20,7 @@ AppGaztaroa
     Nota para mi: ** npx expo start --clear **. Si no te pasa lo que me pasó a mi de que a veces no se actualiza bien. Seguramente sea por algún tipo de caché que hay por ahí.
 
 
+
 ** Commit 02: Componentes React Native (Tiempo: 1h)
     Una vez copiado el código me ha salido un error 500 que marcaba problemas en el archivo CalendarioComponents.js en la importación de @rneui/themed.
     SOLUCIÓN BUSCADA: He consultado si tengo @rneui/themed ejecutando "npm list @rneui/themed".
@@ -55,9 +56,12 @@ AppGaztaroa
     No funcionaba por eso. Tal vez más tarde compruebe 100% la solución del emulador, pero no he entendido del todo cómo funciona lo de ejecutar el proyecto lanzado en el propio emulador.
 
     
+
 ** Commit 03: Componentes funcionales en React Native (Tiempo: 15mins)
     En este commit (por fin) no ha habido ningún problema relevante.
     El único problema que ha surgido ha sido que la importación del "View" estaba duplicada. Al aparecer el error simplemente he eliminado la duplicidad y lo he relanzado.
+
+
 
 ** Commit 04: Stack Navigation (Tiempo: 15mins)
     En este commit no ha habido grandes problemas.
@@ -71,10 +75,14 @@ AppGaztaroa
         Los screens se definen dentro de un navigator usando componentes como Stack.Screen, Tab.Screen, etc.
 
     Además, he añadido también una línea de código extra para que "Calendario Gaztaroa" de la página principal esté centrada y no a la izquierda, tal y como se muestra en el documento "(headerTitleAlign: 'center',)".
-    
+
+
+
 ** Commit 05: Drawer Navigation (Tiempo: 1h)
     En este commit he añadido el Drawer navigator con las opciones "Campo Base" y "Calendario". Las he enlazado mediante "DrawerNavegador".
     He pasado un buen rato comprobando si funcionaba porque no me había enterado de que el Drawer aparecía deslizando el dedo en el móvil. 
+
+
 
 ** Commit 06: Ejercicio Componentes y Navegacion (Tiempo: 3horas)
     Cuando estaba haciendo la práctica, Pablo me contó que había resuelto un problema relacionado con el no cargado de la app. 
@@ -92,6 +100,8 @@ AppGaztaroa
 
     Por último, me he enterado de que no había configurado bien el estilo de navegación en la pantalla de Detalle Excursión. He ajustado la navegación para que, tal y como se muestra en el video, al estar en Detalle Excursión aparezca "Calendario Gaztaroa" subrayado junto a la flecha de ir hacia atrás.
     
+
+
 ** Commit 07: Botones e icons (4.5h)
     En la sección 1 he empezado añadiendo el código del guión, añadiendo a continuación el código correspondiente a 
     [... renderizar aquí el contenido de los comentarios ...] y [... actualizar estado para tener acceso a los comentarios ...].
@@ -111,6 +121,8 @@ AppGaztaroa
     El problema de este planteamiento es que para el caso de "Calendario" la ventana de "Detalle Excursión" no mantenía el formato. Por eso, he puesto el icono del hamburger en el propio Navigator y he dejado ese header igual. 
     Por tanto, las tres lineas para abrir el Drawer Menu funcionan en todos los casos excepto el de Calendario, que es sobre todo visual.
 
+
+
 ** Commit 08: Servidor JSON (2h)
     En este apartado, hemos comenzado siguiendo los pasos del guión: hemos instalado json-server, hemos creado la carpeta public con el directorio imagenes en sus interior (y las imágenes).
     Al probar a correr el servidor a la primera, me marcó un error. Que resultó ser que para poder lanzarlo el orden correcto era lanzar primero el servidor json y después la app.
@@ -125,6 +137,8 @@ AppGaztaroa
     NOTA: me he fijado de que cuando hay que tomar los datos de la base de datos va un poco lento. No sé si es por la velocidad de la base de datos o de mi propio movil u ordenador (o ambos).
     Nota para mi: json-server --host 192.168.132.40 db.json -p 3001 -d 2000
 
+
+
 ** Commit 09: Redux y Thunk (1h)
     Aunque parezca increible, esta práctica no ha tenido muchas complicaciones.
     He seguido lo indicado en el guión y solo he tenido un pequeño problema en CalendarioComponent.js, ya que había hecho mal la conexión a redux para
@@ -132,7 +146,9 @@ AppGaztaroa
 
     He comprobado que todo funciona como debería. He subido también el diagrama que he presentado en clase. Está en el mismo directorio que este texto.
 
-** Commit 10: Activity Indicator y addFavoritos (Por ahora 1h 30mins)
+
+
+** Commit 10: Activity Indicator y addFavoritos (2h)
     En esta sección, hemos creado el archivo IndicadorActividadComponent.js, el cual define un componente IndicadorActividad que ayuda en la representación de un circulito azul.
     Este se usa (y representa) cuando la página está cargando (acciones loading).
     
@@ -142,3 +158,11 @@ AppGaztaroa
     En el caso del loading hemos mostrado <IndicadorActividad />, en el caso de error, <Text>{props.errMess}</Text> y, de lo contrario, el código que estaba implementado anteriormente.
 
     Por otra parte, hemos gestionado la consulta de estados en los RenderItem.
+
+    En cuanto a la segunda sección, he realizado los cambios indicados en el guión.
+    Me he fijado que no estaba tomando los datos de DetalleExcursionComponent (las escursiones) desde redux. Teniendo en cuenta que no tendría sentido que las excursiones se importaran de local, 
+    he modificado el código para que importe los datos desde redux (excursiones: state.excursiones en el mapStateToProps y excursion={this.props.excursiones.excursiones[+excursionId]} en el RenderExcursion).
+
+    Para que el estado de favoritos se gusrde, primero de todo, he importado connect y baseUrl.
+    Luego he hecho los cambios indicados en el guión. En concreto, añadir la función mapDispatchToProps para conectar las acciones de redux con las props del componente y he cambiado las referencias al estado local (this.setState y this.state.favoritos) 
+    por el uso de estados globales gestionados por redux (this.props.postFavorito y this.props.favoritos.favoritos).
