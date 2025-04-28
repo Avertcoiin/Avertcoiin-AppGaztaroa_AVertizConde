@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Card, Icon } from '@rneui/themed';
-import { Text, View, ScrollView } from 'react-native';
+import { Card, Icon, Input } from '@rneui/themed';
+import { View, Text, ScrollView, Modal } from 'react-native';
 import { connect } from 'react-redux'; // Conexión a Redux
-import { baseUrl } from '../comun/comun';
+import { baseUrl, colorGaztaroaOscuro } from '../comun/comun';
 import { postFavorito } from '../redux/ActionCreators'; // Importar la acción
+import { Rating } from 'react-native-ratings'; // Importar el componente Rating
 
 function RenderExcursion(props) {
     const excursion = props.excursion;
@@ -24,18 +25,34 @@ function RenderExcursion(props) {
                     </Card.FeaturedTitle>
                 </Card.Image>
                 <Text style={{ margin: 20 }}>{excursion.descripcion}</Text>
-                <Icon
-                    raised
-                    reverse
-                    name={props.favorita ? 'heart' : 'heart-o'}
-                    type="font-awesome"
-                    color="#f50"
-                    onPress={() =>
-                        props.favorita
-                            ? console.log('La excursión ya se encuentra entre las favoritas')
-                            : props.onPress()
-                    }
-                />
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Icon
+                        raised
+                        reverse
+                        name={props.favorita ? 'heart' : 'heart-o'}
+                        type="font-awesome"
+                        color="#f50"
+                        onPress={() =>
+                            props.favorita
+                                ? console.log('La excursión ya se encuentra entre las favoritas')
+                                : props.onPress()
+                        }
+                    />
+                    <Icon
+                        raised
+                        reverse
+                        name="pencil"
+                        type="font-awesome"
+                        color={colorGaztaroaOscuro}
+                        onPress={props.modalLapiz}
+                    />
+                </View>
             </Card>
         );
     } else {
@@ -71,6 +88,8 @@ class DetalleExcursion extends Component {
         this.state = {
             excursion: null,
             comentarios: [],
+            modalVisible: false, // Ponemos el estado del modal a false por defecto
+            valoracion: 5, // Ponemos el valor inicial 5 por defecto
         };
     }
 
@@ -115,8 +134,67 @@ class DetalleExcursion extends Component {
                     excursion={this.props.excursiones.excursiones[+excursionId]}
                     favorita={this.props.favoritos.favoritos.some(el => el === excursionId)}
                     onPress={() => this.marcarFavorito(excursionId)}
+                    modalLapiz={() => this.setState({ modalVisible: true })} //Ponemos la visibilidad del modal a true
                 />
                 <RenderComentario comentarios={this.state.comentarios} />
+
+                {/* Modal */}
+                <Modal
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => this.setState({ modalVisible: false })} // Cierra el Modal
+                >
+                    <View style={{ marginTop: 20, flex: 1, alignItems: 'center' }}>
+                        {/* Valor del Rating */}
+                        <Text>
+                            <Text>
+                                <Text style={{ fontSize: 20, color: '#FFD700' }}>Rating: </Text>
+                                <Text style={{ fontSize: 30, color: '#FFD700', fontWeight: 'bold' }}>{this.state.valoracion}</Text>
+                                <Text style={{ fontSize: 20, color: '#FFD700' }}>/5</Text>
+                            </Text>
+                        </Text>
+
+                        {/* Rating */}
+                        <Rating style={{ marginTop: 10 }}
+                            startingValue={5} // 5 estrellas seleccionadas por defecto                            
+                        />
+
+                        {/* Campo de Autor */}
+                        <Input
+                            placeholder="Autor"
+                            leftIcon={{ type: 'font-awesome', name: 'user' }} // Icono de persona
+                        />
+
+                        {/* Campo de Comentario */}
+                        <Input
+                            placeholder="Comentario"
+                            leftIcon={{ type: 'font-awesome', name: 'comment' }} // Icono de bocadillo
+                        />
+
+                        {/* Botón de cancelar */}
+                        <Text
+                            style={{
+                                marginTop: 10,
+                                color: colorGaztaroaOscuro,
+                            }}
+                        >
+                            ENVIAR
+                        </Text>
+
+                        {/* Botón de cancelar */}
+                        <Text
+                            style={{
+                                marginTop: 20,
+                                color: colorGaztaroaOscuro,
+                            }}
+                            onPress={() => this.setState({ modalVisible: false })} // Cierra el Modal
+                        >
+                            CANCELAR
+                        </Text>
+
+                    </View>
+                </Modal>
             </ScrollView>
         );
     }
@@ -125,7 +203,7 @@ class DetalleExcursion extends Component {
 const mapStateToProps = (state) => {
     return {
         excursiones: state.excursiones,
-        favoritos: state.favoritos, 
+        favoritos: state.favoritos,
     };
 };
 

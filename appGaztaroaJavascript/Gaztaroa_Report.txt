@@ -135,7 +135,7 @@ AppGaztaroa
     Como dato extra, me he fijado de que la imagen de 40 años que aparece en mi home y el del ejemplo es distinto. Para que fuera el mismo, he modificado el directorio 40Años del db.json para ese campo en concreto (en cabeceras)
 
     NOTA: me he fijado de que cuando hay que tomar los datos de la base de datos va un poco lento. No sé si es por la velocidad de la base de datos o de mi propio movil u ordenador (o ambos).
-    Nota para mi: json-server --host 192.168.132.40 db.json -p 3001 -d 2000
+    Nota para mi: json-server --host 192.168.136.40 db.json -p 3001 -d 2000
 
 
 
@@ -166,3 +166,20 @@ AppGaztaroa
     Para que el estado de favoritos se guarde, primero de todo, he importado connect y baseUrl.
     Luego he hecho los cambios indicados en el guión. En concreto, añadir la función mapDispatchToProps para conectar las acciones de redux con las props del componente y he cambiado las referencias al estado local (this.setState y this.state.favoritos) 
     por el uso de estados globales gestionados por redux (this.props.postFavorito y this.props.favoritos.favoritos).
+
+
+
+** Commit 11: Ejercicio Formularios y Modals con Redux (1h 30mins por ahora)
+    En este commit, lo primero que hemos hecho ha sido añadir el icono del lápiz. Para ello, hemos usado una estructura muy similar a la del corazón. 
+    Además, hemos envuelto ambos iconos en un view para poder aplicarles los estilos que correspondían (estilo row y centrado).
+
+    Después, hemos procedido a añadir la funcionalidad del modal. Para ello, primero de todo, hemos importado Modal de react-native. Después, hemos añadido el estado modalVisible: false en el constructor de la clase DetalleExcursión para inicializar el modal y poder gestionarlo.
+    Por otra parte, hemos añadido la función "modalLapiz" que volverá el modal visible (modalVisible: true), y hemos hecho que se ejecute cuando el usuario haga click al icono.
+    Por último, dentro del método render de DetalleExcursión hemos añadido el modal, basándonos en el ejemplo de https://reactnative.dev/docs/modal.
+
+    Una vez hecha la estructura general, hemos pasado a añadir los componentes necesarios en nuestro modal (rating, formulario etc.)
+    El rating lo hemos añadido de forma bastante simple. Hemos instalado react-native-ratings y lo hemos importado. Después, hemos añadido en componente Rating y un startingValue de 5 para ponerlo por defecto.
+    Luego, hemos ido añadiendo los inputs con los iconos, además de los textos de ENVIAR (solo estilo y texto) y CANCELAR (estilo, texto y una función para cerralo al presionarlo).
+    
+
+    
