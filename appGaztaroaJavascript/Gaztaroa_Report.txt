@@ -180,6 +180,4 @@ AppGaztaroa
     Una vez hecha la estructura general, hemos pasado a añadir los componentes necesarios en nuestro modal (rating, formulario etc.)
     El rating lo hemos añadido de forma bastante simple. Hemos instalado react-native-ratings y lo hemos importado. Después, hemos añadido en componente Rating y un startingValue de 5 para ponerlo por defecto.
     Luego, hemos ido añadiendo los inputs con los iconos, además de los textos de ENVIAR (solo estilo y texto) y CANCELAR (estilo, texto y una función para cerralo al presionarlo).
-    
-
-    
+   
