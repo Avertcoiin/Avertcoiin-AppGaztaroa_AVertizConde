@@ -22,8 +22,7 @@ export const comentarios = (state = { errMess: null, comentarios: [] }, action) 
         ...action.payload,
         id: nuevoId,
       };
-      console.log('Comentario que se añadirá al estado:', comentario);
-
+      
       return { ...state, comentarios: state.comentarios.concat(comentario) };
 
     default:

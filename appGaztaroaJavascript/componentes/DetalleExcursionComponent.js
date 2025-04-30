@@ -13,11 +13,13 @@ function RenderExcursion(props) {
     if (excursion != null) {
         return (
             <Card>
-                <Card.Image source={{ uri: baseUrl + excursion.imagen }}>
+                <Card.Image 
+                    source={{ uri: baseUrl + excursion.imagen }}
+                    style={{ justifyContent: 'center', alignItems: 'center' }}>
                     <Card.FeaturedTitle
                         style={{
                             color: 'white',
-                            fontSize: 24,
+                            fontSize: 40,
                             fontWeight: 'bold',
                             textAlign: 'center',
                         }}
@@ -198,19 +200,23 @@ class DetalleExcursion extends Component {
                         />
 
                         {/* Campo de Autor */}
-                        <Input
-                            placeholder="Autor"
-                            leftIcon={{ type: 'font-awesome', name: 'user' }} // Icono de persona a la izda
-                            onChangeText={(autor) => this.setState({ autor })} // Almacenamos en el estado
-                        />
+                        <View style={{ width: '100%', paddingHorizontal: 20 }}>
+                            <Input
+                                placeholder="Autor"
+                                leftIcon={{ type: 'font-awesome', name: 'user' }} // Icono de persona a la izda
+                                onChangeText={(autor) => this.setState({ autor })} // Almacenamos en el estado
+                            />
+                        </View>
 
                         {/* Campo de Comentario */}
-                        <Input
-                            placeholder="Comentario"
-                            leftIcon={{ type: 'font-awesome', name: 'comment' }} // Icono de bocadillo a la izda
-                            onChangeText={(comentario) => this.setState({ comentario })} // Almacenamos en el estado
-                            multiline={true} // Permite múltiples líneas en el comentario
-                        />
+                        <View style={{ width: '100%', paddingHorizontal: 20 }}>
+                            <Input
+                                placeholder="Comentario"
+                                leftIcon={{ type: 'font-awesome', name: 'comment' }} // Icono de bocadillo a la izda
+                                onChangeText={(comentario) => this.setState({ comentario })} // Almacenamos en el estado
+                                multiline={true} // Permite múltiples líneas en el comentario
+                            />
+                        </View>
 
                         {/* Botón de enviar */}
                         <Text

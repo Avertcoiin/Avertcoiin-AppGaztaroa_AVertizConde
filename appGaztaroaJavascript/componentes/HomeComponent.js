@@ -20,11 +20,14 @@ function RenderItem(props) {
         if (item != null) {
             return (
                 <Card>
-                    <Card.Image source={{ uri: baseUrl + item.imagen }}>
+                    <Card.Image 
+                        source={{ uri: baseUrl + item.imagen }}
+                        style={{ justifyContent: 'center', alignItems: 'center' }}
+                        >
                         <Card.FeaturedTitle
                             style={{
                                 color: 'chocolate',
-                                fontSize: 24,
+                                fontSize: 40,
                                 fontWeight: 'bold',
                                 textAlign: 'center',
                             }}

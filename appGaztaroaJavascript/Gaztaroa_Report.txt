@@ -169,7 +169,7 @@ AppGaztaroa
 
 
 
-** Commit 11: Ejercicio Formularios y Modals con Redux (4h por ahora)
+** Commit 11: Ejercicio Formularios y Modals con Redux (4h 30mins)
     En este commit, lo primero que hemos hecho ha sido añadir el icono del lápiz. Para ello, hemos usado una estructura muy similar a la del corazón. 
     Además, hemos envuelto ambos iconos en un view para poder aplicarles los estilos que correspondían (estilo row y centrado).
 
@@ -181,11 +181,18 @@ AppGaztaroa
     El rating lo hemos añadido de forma bastante simple. Hemos instalado react-native-ratings y lo hemos importado. Después, hemos añadido en componente Rating y un startingValue de 5 para ponerlo por defecto.
     Luego, hemos ido añadiendo los inputs con los iconos, además de los textos de ENVIAR (solo estilo y texto) y CANCELAR (estilo, texto y una función para cerralo al presionarlo).
    
-    En lo que respecta a la segunda parte, primero de todo, se 
+    En lo que respecta a la segunda parte, primero de todo, se han añadido las secciones de código indicadas en el guión.
+    Uno de los puntos clave detectados es que a la hora de crear la función toggleModal(). Al basarme en la documentación de https://reactnative.dev/docs/modal, me he dado cuenta de que en el ejemplo usaban la variable modalVisible para manejar la visibilidad del modal. 
+    Aun así, en mi en el guión se usaba showModal como nombre de la variable. He decidido unificarlo todo con el nombre del guión.
 
-    *Importante a mencionar: lo de ModalVisible por showModal 
-     Añadimos dia en this.state para que tenga todos los datos del formuario inicializados
-     Para poder enviar tenermos que guardar el estado de autor y comentario
-     Import del postComentario
-     Mencionar todo el tema del id
-     Para mostrar los comentarios pasamos de this a props
+    Por otra parte, he añadido la variable dia en el estado inicial (this.state) del componente DetalleExcursion ya que es una variable que se usa a la hora de poner el comentario y es preferible inicializarla desde el principio para evitar problemas al enviar los datos.
+
+    Además, se hecho que se guarde el estado del texto introducido en autor y comentario para que después se pueda hacer el post. 
+
+    Para poder hacer el envío del comentario, he importado postComentario desde ActionCreators.js. Esta acción se conecta al componente DetalleExcursion mediante mapDispatchToProps, lo que permite despacharla. De esta forma, los datos
+    del formulario se envían al estado global de Redux.
+
+    El mayor problema que he tenido durante en esta sección ha sido con la generación del id del comentario. Al principio, los comentarios no tenían un identificador único, lo que impedía añadir nuevos comentarios. Para solucionarlo, en el reducer comentarios.js, 
+    he implementado una lógica que calcula el mayor id existente en el array de comentarios y le suma 1 para generar un nuevo id único. Esto asegura que cada comentario tenga un identificador único y evita conflictos.
+
+    Y por último, una vez gestionados los id-s he cambiado el this en la importación de los comentarios por props, para tomarlos desde redux en vez de desde local.
