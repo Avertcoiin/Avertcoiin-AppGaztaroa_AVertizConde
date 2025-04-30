@@ -5,6 +5,7 @@ import { connect } from 'react-redux'; // Conexión a Redux
 import { baseUrl, colorGaztaroaOscuro } from '../comun/comun';
 import { postFavorito } from '../redux/ActionCreators'; // Importar la acción
 import { Rating } from 'react-native-ratings'; // Importar el componente Rating
+import { postComentario } from '../redux/ActionCreators';
 
 function RenderExcursion(props) {
     const excursion = props.excursion;
@@ -88,9 +89,39 @@ class DetalleExcursion extends Component {
         this.state = {
             excursion: null,
             comentarios: [],
-            modalVisible: false, // Ponemos el estado del modal a false por defecto
+            autor: '',
+            comentario: '',
+            dia: '',
+            showModal: false, // Ponemos el estado del modal a false por defecto
             valoracion: 5, // Ponemos el valor inicial 5 por defecto
         };
+    }
+
+    gestionarComentario(excursionId) {
+        const { valoracion, autor, comentario } = this.state;
+
+        // Genera la fecha actual
+        const dia = new Date().toISOString();
+
+        // Llama a la acción postComentario para enviar los datos al repositorio Redux
+        this.props.postComentario(excursionId, valoracion, autor, comentario, dia);
+
+        // Resetea el formulario y cierra el Modal
+        this.resetForm();
+        this.toggleModal();
+    }
+
+    toggleModal() {
+        this.setState({ showModal: !this.state.showModal }); //modalVisible, no showModal
+    }
+
+    resetForm() {
+        this.setState({
+            valoracion: 5, // Valoración inicial
+            autor: '', // Campo de autor vacío
+            comentario: '', // Campo de comentario vacío
+            showModal: false,  // Cierra el modal. modalVisible, no showModal
+        });
     }
 
     componentDidMount() {
@@ -128,22 +159,27 @@ class DetalleExcursion extends Component {
     render() {
         const { excursionId } = this.props.route.params;
 
+        // Filtrar los comentarios por excursionId
+        const comentariosFiltrados = this.props.comentarios.comentarios.filter(
+            (comentario) => comentario.excursionId === excursionId
+        );
+
         return (
             <ScrollView>
                 <RenderExcursion
                     excursion={this.props.excursiones.excursiones[+excursionId]}
                     favorita={this.props.favoritos.favoritos.some(el => el === excursionId)}
                     onPress={() => this.marcarFavorito(excursionId)}
-                    modalLapiz={() => this.setState({ modalVisible: true })} //Ponemos la visibilidad del modal a true
+                    modalLapiz={() => this.toggleModal()} // toggleamos el Modal
                 />
-                <RenderComentario comentarios={this.state.comentarios} />
+                <RenderComentario comentarios={comentariosFiltrados} />
 
                 {/* Modal */}
                 <Modal
                     animationType="slide"
                     transparent={false}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => this.setState({ modalVisible: false })} // Cierra el Modal
+                    visible={this.state.showModal}
+                    onRequestClose={() => this.toggleModal()} // Llama a toggleModal para cerrar el Modal
                 >
                     <View style={{ marginTop: 20, flex: 1, alignItems: 'center' }}>
                         {/* Valor del Rating */}
@@ -157,27 +193,32 @@ class DetalleExcursion extends Component {
 
                         {/* Rating */}
                         <Rating style={{ marginTop: 10 }}
-                            startingValue={5} // 5 estrellas seleccionadas por defecto                            
+                            startingValue={5} // 5 estrellas seleccionadas por defecto 
+                            onFinishRating={(rating) => this.setState({ valoracion: rating })} // Actualiza el estado con la nueva valoración                           
                         />
 
                         {/* Campo de Autor */}
                         <Input
                             placeholder="Autor"
-                            leftIcon={{ type: 'font-awesome', name: 'user' }} // Icono de persona
+                            leftIcon={{ type: 'font-awesome', name: 'user' }} // Icono de persona a la izda
+                            onChangeText={(autor) => this.setState({ autor })} // Almacenamos en el estado
                         />
 
                         {/* Campo de Comentario */}
                         <Input
                             placeholder="Comentario"
-                            leftIcon={{ type: 'font-awesome', name: 'comment' }} // Icono de bocadillo
+                            leftIcon={{ type: 'font-awesome', name: 'comment' }} // Icono de bocadillo a la izda
+                            onChangeText={(comentario) => this.setState({ comentario })} // Almacenamos en el estado
+                            multiline={true} // Permite múltiples líneas en el comentario
                         />
 
-                        {/* Botón de cancelar */}
+                        {/* Botón de enviar */}
                         <Text
                             style={{
                                 marginTop: 10,
                                 color: colorGaztaroaOscuro,
                             }}
+                            onPress={() => this.gestionarComentario(this.props.route.params.excursionId)}
                         >
                             ENVIAR
                         </Text>
@@ -188,7 +229,10 @@ class DetalleExcursion extends Component {
                                 marginTop: 20,
                                 color: colorGaztaroaOscuro,
                             }}
-                            onPress={() => this.setState({ modalVisible: false })} // Cierra el Modal
+                            onPress={() => {
+                                this.resetForm()
+                                this.toggleModal();
+                            }} // Llama a toggleModal para cerrar el Modal
                         >
                             CANCELAR
                         </Text>
@@ -204,11 +248,14 @@ const mapStateToProps = (state) => {
     return {
         excursiones: state.excursiones,
         favoritos: state.favoritos,
+        comentarios: state.comentarios,
     };
 };
 
 const mapDispatchToProps = (dispatch) => ({
     postFavorito: (excursionId) => dispatch(postFavorito(excursionId)), // Acción para manejar favoritos
+    postComentario: (excursionId, valoracion, autor, comentario, dia) =>
+        dispatch(postComentario(excursionId, valoracion, autor, comentario, dia)), // Acción para manejar comentarios
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetalleExcursion);

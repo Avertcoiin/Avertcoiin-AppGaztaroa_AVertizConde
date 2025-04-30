@@ -11,3 +11,5 @@ export const ADD_ACTIVIDADES = 'ADD_ACTIVIDADES';
 export const ACTIVIDADES_FAILED = 'ACTIVIDADES_FAILED';
 export const POST_FAVORITO = 'POST_FAVORITO'; //Para subir la información al servidor reduz
 export const ADD_FAVORITO = 'ADD_FAVORITO';
+export const POST_COMENTARIO = 'POST_COMENTARIO';
+export const ADD_COMENTARIO = 'ADD_COMENTARIO';

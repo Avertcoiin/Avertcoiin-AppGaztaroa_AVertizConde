@@ -152,3 +152,33 @@ export const addFavorito = (excursionId) => ({
     type: ActionTypes.ADD_FAVORITO,
     payload: excursionId
 });
+
+export const postComentario = (excursionId, valoracion, autor, comentario) => (dispatch) => {
+    const nuevoComentario = {
+        excursionId: excursionId,
+        valoracion: valoracion,
+        comentario: comentario,
+        autor: autor,
+        dia: new Date().toISOString(), // Cambia "fecha" por "dia" para que coincida con el formato
+    };
+
+    // Retardo de 2 segundos antes del dispatch
+    setTimeout(() => {
+        // Hacemos un console log de los datos
+        console.log('Nuevo comentario:', nuevoComentario);
+        dispatch(addComentario(nuevoComentario)); // Metemos la constante con las variables del comentario en la función
+    }, 2000);
+};
+
+export const addComentario = (comentario) => {
+    console.log('Acción ADD_COMENTARIO despachada:', comentario); // Verifica si se despacha
+    return {
+        type: ActionTypes.ADD_COMENTARIO,
+        payload: comentario,
+    };
+};
+
+/* export const addComentario = (comentario) => ({
+    type: ActionTypes.ADD_COMENTARIO,
+    payload: comentario,
+}); */
