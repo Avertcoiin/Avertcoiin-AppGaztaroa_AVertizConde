@@ -196,3 +196,5 @@ AppGaztaroa
     he implementado una lógica que calcula el mayor id existente en el array de comentarios y le suma 1 para generar un nuevo id único. Esto asegura que cada comentario tenga un identificador único y evita conflictos.
 
     Y por último, una vez gestionados los id-s he cambiado el this en la importación de los comentarios por props, para tomarlos desde redux en vez de desde local.
+
+TOTAL HORAS: 21h
